@@ -1,47 +1,49 @@
 <!-- Titlebar template containing all the markup for the titlebar -->
-<div class="flex-row align-center">
-  <button id="btn-file-menu" class="btn titlebar-btn" type="button">
-    File
-    
-  </button>
-  <button id="btn-edit-menu" class="btn titlebar-btn" type="button">
-    Edit
-    
-  </button>
-  <button id="btn-view-menu" class="btn titlebar-btn" type="button">
-    View
-    
-  </button>
-  <button id="btn-settings-menu" class="btn titlebar-btn" type="button"
-  >Settings
-    
-  </button>
-</div>
-<div class="flex-row align-center">
-  <button
-      id="btn-minimize"
-      type="button"
-      class="titlebar-btn"
-      data-title="Minimize"
-    >
-      <span id="btn-minimize" class="material-symbols-outlined"> remove </span>
+<div class="titlebar-content">
+  <div class="flex-row align-center">
+    <button id="btn-file-menu" class="btn titlebar-btn" type="button">
+      File
+      
     </button>
+    <button id="btn-edit-menu" class="btn titlebar-btn" type="button">
+      Edit
+      
+    </button>
+    <button id="btn-view-menu" class="btn titlebar-btn" type="button">
+      View
+      
+    </button>
+    <button id="btn-settings-menu" class="btn titlebar-btn" type="button"
+    >Settings
+      
+    </button>
+  </div>
+  <div class="flex-row align-center">
     <button
-      id="btn-maximize"
-      type="button"
-      class="titlebar-btn"
-      data-title="Maximize/Restore"
-    >
-      <span id="btn-maximize" class="btn-maximize-icon material-symbols-outlined">
-        crop_square
-      </span>
-    </button>
-    <button
-      id="btn-close"
-      type="button"
-      class="titlebar-close-btn"
-      data-title="Close"
-    >
-      <span id="btn-close" class="material-symbols-outlined"> close </span>
-    </button>
+        id="btn-minimize"
+        type="button"
+        class="titlebar-btn"
+        data-title="Minimize"
+      >
+        <span id="btn-minimize" class="material-symbols-outlined"> remove </span>
+      </button>
+      <button
+        id="btn-maximize"
+        type="button"
+        class="titlebar-btn"
+        data-title="Maximize/Restore"
+      >
+        <span id="btn-maximize" class="btn-maximize-icon material-symbols-outlined">
+          crop_square
+        </span>
+      </button>
+      <button
+        id="btn-close"
+        type="button"
+        class="titlebar-btn close-btn"
+        data-title="Close"
+      >
+        <span id="btn-close" class="material-symbols-outlined"> close </span>
+      </button>
+  </div>
 </div>
