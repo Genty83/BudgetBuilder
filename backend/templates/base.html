@@ -1,11 +1,50 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% block meta %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% endblock %}
+
+  {% block title %}
   <title>Document</title>
+  {% endblock %}
+
+  {% block links %}
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  {% endblock %}
+  {% block css %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% endblock %}
+
+  {% block js %}
+
+  {% endblock %}
 </head>
 <body>
-  
+  <!-- Main app container -->
+  <div class="app-container">
+    <!-- Titlebar -->
+    <div class="titlebar">
+      {% include 'includes/titlebar.html' %}
+    </div>
+    <!-- End of titlebar -->
+
+    <!-- Middle section -->
+    <div class="middle-section">
+
+    </div>
+    <!-- End of middle section -->
+    
+    <!-- Bottom bar -->
+    <div class="bottom-bar">
+
+    </div>
+    <!-- End of bottom bar -->
+
+  </div>
+  <!-- End of main app container -->
 </body>
 </html>
