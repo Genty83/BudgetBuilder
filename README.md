@@ -1,2 +1,2 @@
-# MyFinnaces
-My Finances is a desktop application for managing personal finances. 
+# BudgetBuilder
+Budget Builder is an application for managing personal budgets.
