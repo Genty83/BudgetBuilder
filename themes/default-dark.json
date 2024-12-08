@@ -1,0 +1,31 @@
+{
+  "application": {
+    "background": "#0f0f12",
+    "foreground": "#fafafa"
+  },
+  "titlebar": {
+    "background": "#18181b",
+    "foreground": "#fafafa",
+    "border": "#27272a",
+    "button": {
+      "background": "#18181b",
+      "foreground": "#fafafa",
+      "hover": "#3f3f46",
+      "active": "#42A5F5"
+    },
+    "buttonClose": {
+      "background": "#18181b",
+      "foreground": "#fafafa",
+      "hover": "#EF5350",
+      "active": "#F44336"
+    },
+    "searchbar": {
+      "background": "#27272a",
+      "foreground": "#fafafa",
+      "border": "#3f3f46",
+      "placeholder": "#a1a1aa",
+      "icon": "#fafafa",
+      "hover": "#18181b"
+    }
+  }
+}
