@@ -20,7 +20,7 @@
   {% endblock %}
 
   {% block js %}
-
+  <script type="module" src="{% static 'js/index.js' %}"></script>
   {% endblock %}
 </head>
 <body>
@@ -34,6 +34,48 @@
 
     <!-- Middle section -->
     <div class="middle-section">
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+      
+      </div>
+      <!-- End of sidebar -->
+
+      <!-- Explorer -->
+      <div class="explorer">
+
+      </div>
+      <!-- End of explorer -->
+
+      <!-- Middle Content -->
+      <div class="middle-content">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+
+        </div>
+        <!-- End of breadcrumb -->
+
+        <!-- Content -->
+        <div class="content">
+          {% block content %}
+
+          {% endblock %}
+        </div>
+        <!-- End of content -->
+
+        <!-- Bottom Menu-->
+        <div class="bottom-menu">
+
+        </div>
+        <!-- End of bottom menu -->
+      </div>
+      <!-- End of middle content -->
+
+      <!-- Right Menu -->
+      <div class="right-menu">
+
+      </div>
+      <!-- End of right menu -->
 
     </div>
     <!-- End of middle section -->
