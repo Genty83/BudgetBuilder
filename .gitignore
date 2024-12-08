@@ -12,3 +12,5 @@ static/
 # Environments
 .env
 env.py
+# App settings
+app_settings.json
