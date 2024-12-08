@@ -1,0 +1,27 @@
+{
+  "window": {
+    "width": 1100,
+    "height": 700,
+    "minWidth": 850,
+    "minHeight": 650
+  },
+  "app": {
+    "name": "My Finance",
+    "version": "1.0.0"
+  },
+  "sidebar": {
+    "collapsed": true
+  },
+  "explorer": {
+    "collapsed": false,
+    "currentWidth": 228
+  },
+  "bottomMenu": {
+    "collapsed": false,
+    "currentHeight": 228.453125
+  },
+  "rightMenu": {
+    "collapsed": false,
+    "currentWidth": 300
+  }
+}
