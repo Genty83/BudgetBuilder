@@ -1,0 +1,14 @@
+# Virtual Environment
+venv/
+# Electron build
+node_modules/
+*.log
+# Python
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+static/
+# Environments
+.env
+env.py
