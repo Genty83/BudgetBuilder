@@ -1,9 +1,14 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 let settings;
+let themeSettings;
 
 ipcRenderer.on('send-settings', (event, data) => {
   settings = data;
+});
+
+ipcRenderer.on('theme-settings', (event, data) => {
+  themeSettings = data;
 });
 
 contextBridge.exposeInMainWorld('api', {
@@ -15,6 +20,7 @@ contextBridge.exposeInMainWorld('api', {
       'toggle-fullscreen', 
       'create-new-main-window', 
       'get-settings', 
+      'get-theme-settings', 
       'save-settings', 
       'hard-refresh'
     ];
@@ -23,7 +29,7 @@ contextBridge.exposeInMainWorld('api', {
     }
   },
   recieve: (channel, func) => {
-    let validChannels = ['reply', 'send-settings'];
+    let validChannels = ['reply', 'send-settings', 'theme-settings'];
     if (validChannels.includes(channel)) {
       ipcRenderer.on(channel, (event, ...args) => func(...args));
     }
@@ -33,5 +39,6 @@ contextBridge.exposeInMainWorld('api', {
       return { ipcRenderer };
     }
   },
-  getSettings: () => settings
+  getSettings: () => settings,
+  getThemeSettings: () => themeSettings
 });

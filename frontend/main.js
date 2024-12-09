@@ -1,13 +1,11 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, Menu } = require('electron')
-const path = require('node:path')
+const { app, BrowserWindow, Menu } = require('electron');
+const path = require('node:path');
 const ipc = require('electron').ipcMain;
 const fs = require('fs').promises;
 
 let mainWindow;
 let additionalWindows = [];
-
-
 
 const menuTemplate = [
   {
@@ -78,21 +76,32 @@ async function saveSettings(settings) {
   }
 }
 
-async function createWindow() {
+// Function to load theme settings from JSON file
+async function loadThemeSettings() {
+  try {
+    const data = await fs.readFile(path.join(__dirname, '../themes/default-dark.json'), 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Failed to load theme settings', error);
+    return null;
+  }
+}
 
+async function createWindow() {
   const settings = await loadSettings();
+  const themeSettings = await loadThemeSettings();
 
   if (!settings) {
     console.error('Failed to load settings');
     return;
   }
 
-  // Create the browser window.
+  // Create the browser window
   const window = new BrowserWindow({
     width: settings.window.width,
-    height: 700,
-    minHeight: 600,
-    minWidth: 850,
+    height: settings.window.height,
+    minHeight: settings.window.minHeight,
+    minWidth: settings.window.minWidth,
     frame: false,
     webPreferences: {
       nodeIntegration: false,
@@ -101,24 +110,30 @@ async function createWindow() {
     },
   });
 
-  // and load the index.html of the app.
+  // and load the index.html of the app
   window.loadURL('http://localhost:8000');
 
   // Set Content Security Policy
-window.webContents.session.webRequest.onHeadersReceived((details, callback) => {
-  callback({
+  window.webContents.session.webRequest.onHeadersReceived((details, callback) => {
+    callback({
       responseHeaders: {
-          ...details.responseHeaders,
-          'Content-Security-Policy': [
-              "default-src 'self';",
-              "img-src 'self' data: https:;",
-              "script-src 'self' https://fonts.googleapis.com;",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;",
-              "font-src 'self' https://fonts.gstatic.com;"
-          ].join(' ')
+        ...details.responseHeaders,
+        'Content-Security-Policy': [
+          "default-src 'self';",
+          "img-src 'self' data: https:;",
+          "script-src 'self' https://fonts.googleapis.com;",
+          "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;",
+          "font-src 'self' https://fonts.gstatic.com;"
+        ].join(' ')
       }
+    });
   });
-});
+
+  // Send settings and theme settings to the renderer process
+  window.webContents.on('did-finish-load', () => {
+    window.webContents.send('settings', settings);
+    window.webContents.send('theme-settings', themeSettings);
+  });
 
   window.on('closed', () => {
     if (mainWindow === window) {
@@ -194,5 +209,5 @@ app.whenReady().then(() => {
 });
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit()
+  if (process.platform !== 'darwin') app.quit();
 });
