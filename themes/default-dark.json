@@ -8,8 +8,6 @@
     "foreground": "#fafafa",
     "border": "#27272a",
     "button": {
-      "background": "#18181b",
-      "foreground": "#fafafa",
       "hover": "#3f3f46",
       "active": "#42A5F5"
     },
@@ -26,6 +24,16 @@
       "placeholder": "#a1a1aa",
       "icon": "#fafafa",
       "hover": "#18181b"
+    }
+  },
+  "sidebar": {
+    "background": "#18181b",
+    "foreground": "#fafafa",
+    "border": "#27272a",
+    "seperator": "#27272a",
+    "item": {
+      "hover": "#27272a",
+      "active": "#42A5F5"
     }
   }
 }
