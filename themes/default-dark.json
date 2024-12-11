@@ -35,5 +35,14 @@
       "hover": "#27272a",
       "active": "#42A5F5"
     }
+  },
+  "bottombar": {
+    "background": "#18181b",
+    "foreground": "#fafafa",
+    "border": "#27272a",
+    "item": {
+      "hover": "#27272a",
+      "active": "#42A5F5"
+    }
   }
 }
