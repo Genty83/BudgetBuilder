@@ -1,4 +1,3 @@
-// Modules to control application life and create native browser window
 const { app, BrowserWindow, Menu } = require('electron');
 const path = require('node:path');
 const ipc = require('electron').ipcMain;
@@ -35,7 +34,7 @@ const menuTemplate = [
         label: 'New Window',
         accelerator: 'CmdOrCtrl+N',
         click: () => {
-          createWindow();
+          createNewMainWindow();
         }
       },
       {
@@ -76,7 +75,6 @@ async function saveSettings(settings) {
   }
 }
 
-// Function to load theme settings from JSON file
 async function loadThemeSettings() {
   try {
     const data = await fs.readFile(path.join(__dirname, '../themes/default-dark.json'), 'utf8');
@@ -87,17 +85,31 @@ async function loadThemeSettings() {
   }
 }
 
-async function createWindow() {
+function setupWindowEvents(window, settings, themeSettings) {
+  window.webContents.on('did-finish-load', () => {
+    window.webContents.send('settings', settings);
+    window.webContents.send('theme-settings', themeSettings);
+  });
+
+  window.on('closed', () => {
+    if (mainWindow === window) {
+      mainWindow = null;
+    } else {
+      additionalWindows = additionalWindows.filter(w => w !== window);
+    }
+  });
+}
+
+async function createWindow(options = {}, isNewMainWindow = false) {
   const settings = await loadSettings();
   const themeSettings = await loadThemeSettings();
 
   if (!settings) {
     console.error('Failed to load settings');
-    return;
+    return null;
   }
 
-  // Create the browser window
-  const window = new BrowserWindow({
+  const defaultOptions = {
     width: settings.window.width,
     height: settings.window.height,
     minHeight: settings.window.minHeight,
@@ -108,12 +120,12 @@ async function createWindow() {
       contextIsolation: true,
       preload: path.join(__dirname, 'preload.js')
     },
-  });
+  };
 
-  // and load the index.html of the app
+  const window = new BrowserWindow({ ...defaultOptions, ...options });
+
   window.loadURL('http://localhost:8000');
 
-  // Set Content Security Policy
   window.webContents.session.webRequest.onHeadersReceived((details, callback) => {
     callback({
       responseHeaders: {
@@ -129,25 +141,21 @@ async function createWindow() {
     });
   });
 
-  // Send settings and theme settings to the renderer process
-  window.webContents.on('did-finish-load', () => {
-    window.webContents.send('settings', settings);
-    window.webContents.send('theme-settings', themeSettings);
-  });
+  setupWindowEvents(window, settings, themeSettings);
 
-  window.on('closed', () => {
-    if (mainWindow === window) {
-      mainWindow = null;
-    } else {
-      additionalWindows = additionalWindows.filter(w => w !== window);
-    }
-  });
+  if (isNewMainWindow) {
+    mainWindow = window;
+  } else {
+    additionalWindows.push(window);
+  }
+
   return window;
 }
 
 function createNewMainWindow() {
-  const newWindow = createWindow();
-  additionalWindows.push(newWindow);
+  createWindow({}, true).catch(error => {
+    console.error('Error creating new main window', error);
+  });
 }
 
 ipc.on('create-new-main-window', () => {
@@ -199,11 +207,11 @@ ipc.on('hard-refresh', () => {
 });
 
 app.whenReady().then(() => {
-  mainWindow = createWindow();
+  createWindow({}, true);
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      mainWindow = createWindow();
+      createNewMainWindow();
     }
   });
 });
