@@ -24,6 +24,16 @@
       "placeholder": "#a1a1aa",
       "icon": "#fafafa",
       "hover": "#18181b"
+    },
+    "contextMenu": {
+      "background": "#18181b",
+      "foreground": "#fafafa",
+      "border": "#27272a",
+      "shadow": "#000000",
+      "item": {
+        "hover": "#27272a",
+        "active": "#42A5F5"
+      }
     }
   },
   "sidebar": {
@@ -36,13 +46,41 @@
       "active": "#42A5F5"
     }
   },
-  "bottombar": {
+  "explorer": {
     "background": "#18181b",
     "foreground": "#fafafa",
     "border": "#27272a",
     "item": {
       "hover": "#27272a",
       "active": "#42A5F5"
+    }
+  },
+  "bottombar": {
+    "background": "#18181b",
+    "foreground": "#fafafa",
+    "foregroundHighlight": "#42A5F5",
+    "border": "#27272a",
+    "item": {
+      "hover": "#27272a",
+      "active": "#42A5F5"
+    }
+  },
+  "bottomMenu": {
+    "background": "#18181b",
+    "foreground": "#fafafa",
+    "border": "#27272a",
+    "tab": {
+      "foregroundHover": "#27272a",
+      "tabActiveBorder": "#42A5F5"
+    }
+  },
+  "rightMenu": {
+    "background": "#18181b",
+    "foreground": "#fafafa",
+    "border": "#27272a",
+    "buttonClose": {
+      "hover": "#EF5350",
+      "active": "#F44336"
     }
   }
 }
