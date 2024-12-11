@@ -22,14 +22,15 @@ contextBridge.exposeInMainWorld('api', {
       'get-settings', 
       'get-theme-settings', 
       'save-settings', 
-      'hard-refresh'
+      'hard-refresh',
+      'change-theme'
     ];
     if (validChannels.includes(channel)) {
       ipcRenderer.send(channel, data);
     }
   },
   recieve: (channel, func) => {
-    let validChannels = ['reply', 'send-settings', 'theme-settings'];
+    let validChannels = ['reply', 'send-settings', 'theme-settings', 'theme-change'];
     if (validChannels.includes(channel)) {
       ipcRenderer.on(channel, (event, ...args) => func(...args));
     }

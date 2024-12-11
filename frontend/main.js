@@ -1,6 +1,5 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain } = require('electron');
 const path = require('node:path');
-const ipc = require('electron').ipcMain;
 const fs = require('fs').promises;
 
 let mainWindow;
@@ -58,8 +57,7 @@ async function loadSettings() {
   try {
     const configPath = path.join(__dirname, '../config/app_settings.json');
     const data = await fs.readFile(configPath, 'utf8');
-    const settings = JSON.parse(data);
-    return settings;
+    return JSON.parse(data);
   } catch (error) {
     console.error(error);
     return null;
@@ -75,9 +73,9 @@ async function saveSettings(settings) {
   }
 }
 
-async function loadThemeSettings() {
+async function loadThemeSettings(themePath = '../themes/skyline-dark.json') {
   try {
-    const data = await fs.readFile(path.join(__dirname, '../themes/default-dark.json'), 'utf8');
+    const data = await fs.readFile(path.join(__dirname, themePath), 'utf8');
     return JSON.parse(data);
   } catch (error) {
     console.error('Failed to load theme settings', error);
@@ -158,51 +156,59 @@ function createNewMainWindow() {
   });
 }
 
-ipc.on('create-new-main-window', () => {
+ipcMain.on('create-new-main-window', () => {
   createNewMainWindow();
 });
 
-ipc.on('close-app', () => {
+ipcMain.on('close-app', () => {
   const focusedWindow = BrowserWindow.getFocusedWindow();
   if (focusedWindow) {
     focusedWindow.close();
   }
 });
 
-ipc.on('minimize-app', () => {
+ipcMain.on('minimize-app', () => {
   const focusedWindow = BrowserWindow.getFocusedWindow();
   if (focusedWindow) {
     focusedWindow.minimize();
   }
 });
 
-ipc.on('maximize-app', () => {
+ipcMain.on('maximize-app', () => {
   const focusedWindow = BrowserWindow.getFocusedWindow();
   if (focusedWindow) {
     focusedWindow.isMaximized() ? focusedWindow.unmaximize() : focusedWindow.maximize();
   }
 });
 
-ipc.on('toggle-fullscreen', () => {
+ipcMain.on('toggle-fullscreen', () => {
   const focusedWindow = BrowserWindow.getFocusedWindow();
   if (focusedWindow) {
     focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
   }
 });
 
-ipc.on('get-settings', async (event) => {
+ipcMain.on('get-settings', async (event) => {
   const settings = await loadSettings();
   event.reply('send-settings', settings);
 });
 
-ipc.on('save-settings', async (event, newSettings) => {
+ipcMain.on('save-settings', async (event, newSettings) => {
   await saveSettings(newSettings);
 });
 
-ipc.on('hard-refresh', () => {
+ipcMain.on('hard-refresh', () => {
   const focusedWindow = BrowserWindow.getFocusedWindow();
   if (focusedWindow) {
     focusedWindow.webContents.reloadIgnoringCache();
+  }
+});
+
+ipcMain.on('change-theme', async (event, themePath) => {
+  const themeSettings = await loadThemeSettings(themePath);
+  const focusedWindow = BrowserWindow.getFocusedWindow();
+  if (focusedWindow) {
+    focusedWindow.webContents.send('theme-change', themeSettings);
   }
 });
 
