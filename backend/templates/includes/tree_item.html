@@ -1,0 +1,15 @@
+<li class="{% if item.type == 'folder' %}collapsed{% endif %}">
+  {% if item.type == 'folder' %}
+    <span class="toggle"><i class="material-symbols-outlined">chevron_right</i></span>
+    <span class="icon"><i class="material-symbols-outlined">folder</i></span>
+    <a href="{{ item.url }}">{{ item.name }}</a>
+    <ul>
+      {% for child in item.children %}
+        {% include 'includes/tree_item.html' with item=child %}
+      {% endfor %}
+    </ul>
+  {% else %}
+    <span class="icon"><i class="material-symbols-outlined">insert_drive_file</i></span>
+    <a href="{{ item.url }}">{{ item.name }}</a>
+  {% endif %}
+</li>

@@ -1,3 +1,22 @@
 <div class="explorer-content">
+  <div class="flex-row align-center justify-between p-2">
+    <p class="text-lg">Explorer</p>
+    <button type="button" class="explorer-icon-btn bottom-left" data-title="Views And More Actions">
+      <span class="material-symbols-outlined">
+        more_vert
+      </span>
+    </button>
+  </div>
   
+  <!-- Treeview -->
+  <div class="treeview">
+    <div class="flex-row justify-between align-center gap-sm">
+      <p>Navigation</p>
+    </div>
+    <ul class="tree">
+      {% for item in tree_items %}
+        {% include 'includes/tree_item.html' with item=item %}
+      {% endfor %}
+    </ul>
+  </div>
 </div>
