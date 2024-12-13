@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.account',
     # Apps
     'home',
+    'finance',
 ]
 
 MIDDLEWARE = [
