@@ -120,5 +120,24 @@
     "foreground": "#f8fafc",
     "border": "#334155",
     "shadow": "#000000"
+  },
+  "table": {
+    "background": "#0f172a",
+    "foreground": "#f8fafc",
+    "border": "#475569",
+    "header": {
+      "background": "#1e293b",
+      "foreground": "#f8fafc",
+      "border": "#334155"
+    },
+    "cells": {
+      "background": "#f8fafc",
+      "foreground": "#0f172a",
+      "border": "#94a3b8"
+    },
+    "firstCell": {
+      "background": "#42A5F5",
+      "foreground": "#f8fafc"
+    }
   }
 }
