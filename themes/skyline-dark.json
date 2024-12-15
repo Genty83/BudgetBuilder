@@ -139,5 +139,11 @@
       "background": "#42A5F5",
       "foreground": "#f8fafc"
     }
+  },
+  "scrollbar": {
+    "background": "#1e293b",
+    "thumbColor": "#334155",
+    "thumbHoverColor": "#475569",
+    "thumbActiveColor": "#42A5F5"
   }
 }
