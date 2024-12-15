@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   {% block meta %}
   <meta charset="UTF-8">
@@ -13,7 +14,7 @@
   {% endblock %}
 
   {% block links %}
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   {% endblock %}
   {% block css %}
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -23,6 +24,7 @@
   <script type="module" src="{% static 'js/index.js' %}"></script>
   {% endblock %}
 </head>
+
 <body>
   <!-- Main app container -->
   <div class="app-container">
@@ -50,6 +52,23 @@
 
       <!-- Middle Content -->
       <div class="middle-content">
+        {% if messages %}
+        <!-- Flash Messages -->
+        {% for message in messages %}
+          {% if message.tags == 'success' %}
+            {% include 'includes/toasts/success.html' %}
+          {% elif message.tags == 'error' %}
+            <{% include 'includes/toasts/error.html' %}
+          {% elif message.tags == 'info' %}
+            {% include 'includes/toasts/info.html' %}
+          {% else %}
+            {% include 'includes/toasts/warning.html' %}
+          {% endif %}
+        {% endfor %}
+        <!-- End of Flash Messages -->
+        {% endif %}
+
+
         <!-- Breadcrumb -->
         <div class="breadcrumb">
           {% block breadcrumb %}
@@ -83,7 +102,7 @@
 
     </div>
     <!-- End of middle section -->
-    
+
     <!-- Bottom bar -->
     <div class="bottom-bar">
       {% include 'includes/bottombar.html' %}
@@ -93,4 +112,5 @@
   </div>
   <!-- End of main app container -->
 </body>
+
 </html>

@@ -4,81 +4,31 @@
 <title>Finance Manager</title>
 {% endblock %}
 {% block breadcrumb %}
-
+<a href="{% url 'home' %}" class="breadcrumb-item">
+  Home <span>&rsaquo;</span>
+</a>
+  <a href="{% url 'finance-manager' %}" class="breadcrumb-item">
+    Finance <span>&rsaquo;</span>
+  </a>
 {% endblock %}
 
 {% block content %}
-<div class="flex-col gap-sm">
+<div class="flex-col gap-sm page-wrapper">
   <div class="flex-row align-center justify-between">
     <h1>Finance Manager</h1>
     <div class="flex-row gap-sm">
-      <button class="btn btn-primary" id="add-income-btn">Save</button>
+
     </div>
   </div>
   <hr>
   <!-- Table container -->
-  <div id="income-table" class="table-container">
-    <div class="flex-row align-center justify-between pad-sm">
-      <div class="flex-row align-center gap-sm">
-        <p>Rows Per Page: </p>
-        <select id="rows-per-page">
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select>
-      </div>
-      <div>
-        <p>Viewing {{ start_index }} - {{ end_index }} of {{ total_count }} records</p>
-      </div>
-    </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="first-header">+</th>
-          {% for header in headers %}
-          <th>{{ header }}</th>
-          {% endfor %}
-        </tr>
-      </thead>
-      <tbody>
-        {% for income in page_obj %}
-        <tr>
-          <td class="first-cell"></td>
-          <td>{{ income.name }}</td>
-          <td>{{ income.amount }}</td>
-          <td>{{ income.date_received }}</td>
-          <td>{{ income.received_by }}</td>
-          <td>{{ income.month }}</td>
-          <td>{{ income.year }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <div class="pagination">
-      <ul class="pagination">
-        {% if page_obj.has_previous %}
-        <li class="page-btn"><a href="?page=1">&laquo;&laquo; First</a></li>
-        <li class="page-btn"><a href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
-        {% endif %}
-        {% for i in page_obj.paginator.page_range %}
-        {% if page_obj.number == i %}
-        <li class="page-btn active"><span>{{ i }}</span></li>
-        {% elif i > page_obj.number|add:-3 and i < page_obj.number|add:3 %}
-        <li class="page-btn"><a href="?page={{ i }}">{{ i }}</a></li>
-        {% elif i == 1 or i == page_obj.paginator.num_pages %}
-        <li class="page-btn"><a href="?page={{ i }}">{{ i }}</a></li>
-        {% elif i == page_obj.number|add:-3 or i == page_obj.number|add:3 %}
-        <li><span>...</span></li>
-        {% endif %}
-        {% endfor %}
-        {% if page_obj.has_next %}
-        <li class="page-btn"><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
-        <li class="page-btn"><a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;&raquo;</a></li>
-        {% endif %}
-      </ul>
-    </div>
+  <div id="income-table" class="table-container" data-url="{% url 'income-list' %}">
+    <!-- Table will be rendered here by JS -->
   </div>
-  <!-- Table container end -->
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/tableApi/renderTable.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
 {% endblock %}
