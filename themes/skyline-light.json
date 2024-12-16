@@ -1,0 +1,149 @@
+{
+  "application": {
+    "background": "#f8fafc",
+    "foreground": "#000000"
+  },
+  "titlebar": {
+    "background": "#42A5F5",
+    "foreground": "#f1f5f9",
+    "border": "#f1f5f9",
+    "button": {
+      "hover": "#475569",
+      "active": "#42A5F5"
+    },
+    "buttonClose": {
+      "hover": "#EF5350",
+      "active": "#F44336"
+    },
+    "searchbar": {
+      "background": "#f8fafc",
+      "foreground": "#000000",
+      "border": "#475569",
+      "placeholder": "#cbd5e1",
+      "icon": "#f8fafc",
+      "hover": "#1e293b"
+    },
+    "contextMenu": {
+      "background": "#0f172a",
+      "foreground": "#f8fafc",
+      "border": "#1e293b",
+      "shadow": "#000000",
+      "item": {
+        "hover": "#1e293b",
+        "active": "#42A5F5"
+      }
+    }
+  },
+  "sidebar": {
+    "background": "#cbd5e1",
+    "foreground": "#000000",
+    "border": "#f1f5f9",
+    "seperator": "#94a3b8",
+    "item": {
+      "hover": "#475569",
+      "active": "#42A5F5"
+    }
+  },
+  "explorer": {
+    "background": "#cbd5e1",
+    "foreground": "#000000",
+    "border": "#f1f5f9",
+    "item": {
+      "hover": "#475569",
+      "active": "#42A5F5"
+    },
+    "button": {
+      "hover": "#475569",
+      "active": "#42A5F5"
+    }
+  },
+  "bottombar": {
+    "background": "#09142b",
+    "foreground": "#f8fafc",
+    "foregroundHighlight": "#42A5F5",
+    "border": "#1e293b",
+    "item": {
+      "hover": "#334155",
+      "active": "#42A5F5"
+    }
+  },
+  "bottomMenu": {
+    "background": "#f8fafc",
+    "foreground": "#000000",
+    "border": "#cbd5e1",
+    "tab": {
+      "foregroundHover": "#475569",
+      "tabActiveBorder": "#42A5F5"
+    }
+  },
+  "rightMenu": {
+    "background": "#1e293b",
+    "foreground": "#f8fafc",
+    "border": "#334155",
+    "buttonClose": {
+      "hover": "#EF5350",
+      "active": "#F44336"
+    }
+  },
+  "breadcrumb": {
+    "background": "#f8fafc",
+    "foreground": "#000000",
+    "border": "#f1f5f9"
+  },
+  "content": {
+    "background": "#f8fafc",
+    "foreground": "#000000"
+  },
+  "treeMenu": {
+    "background": "#f8fafc",
+    "foreground": "#000000",
+    "foregroundHover": "#42A5F5",
+    "branch": "#94a3b8",
+    "border": "#334155",
+    "item": {
+      "hover": "#475569"
+    },
+    "chevron": {
+      "foreground": "#09142b",
+      "hover": "#42A5F5"
+    },
+    "icon": {
+      "foreground": "#42A5F5"
+    }
+  },
+  "tabBar": {
+    "foregroundHover": "#94a3b8",
+    "activeBorder": "#42A5F5"
+  },
+  "tooltip": {
+    "background": "#1e293b",
+    "foreground": "#f8fafc",
+    "border": "#334155",
+    "shadow": "#000000"
+  },
+  "table": {
+    "background": "#e2e8f0",
+    "foreground": "#000000",
+    "border": "#475569",
+    "header": {
+      "background": "#1e293b",
+      "foreground": "#f8fafc",
+      "border": "#334155"
+    },
+    "cells": {
+      "background": "#f8fafc",
+      "foreground": "#0f172a",
+      "border": "#94a3b8"
+    },
+    "firstCell": {
+      "background": "#42A5F5",
+      "foreground": "#f8fafc"
+    }
+  },
+  "scrollbar": {
+    "background": "#1e293b",
+    "thumbColor": "#334155",
+    "thumbHoverColor": "#475569",
+    "thumbActiveColor": "#42A5F5"
+  }
+}

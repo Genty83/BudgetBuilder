@@ -1,3 +1,6 @@
-from django.test import TestCase
+from rest_framework.test import APITestCase
 
-# Create your tests here.
+class IncomeAPITestCase(APITestCase):
+    def test_income_list(self):
+        response = self.client.get('/api/incomes/')
+        self.assertEqual(response.status_code, 200)

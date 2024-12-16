@@ -22,13 +22,12 @@
   </div>
   <hr>
   <!-- Table container -->
-  <div id="income-table" class="table-container" data-url="{% url 'income-list' %}">
+  <div id="income-table" class="table-container">
     <!-- Table will be rendered here by JS -->
   </div>
 </div>
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/tableApi/renderTable.js' %}"></script>
-<script src="{% static 'js/index.js' %}"></script>
+
 {% endblock %}
